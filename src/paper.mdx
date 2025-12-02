@@ -1,0 +1,170 @@
+---
+title: Dressing the Imagination - A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel NeRA Adapter for Enhanced Feature Adaptation
+authors:
+  - name: Gayatri Deshmukh
+    url: https://roman.technology
+    institution: Northwestern University
+    #notes: ["*", †]
+  - name: Somsubhra De
+    institution: IIT Madras
+  - name: Chirag Sehgal
+    institution: DTU
+  - name: Jishu Sen Gupta
+    institution: IIT BHU
+  - name: Sparsh Mittal
+    institution: IIT Roorkee
+conference: Accepted at WACV 2026
+#notes:
+#  - symbol: "*"
+#    text: author note one
+#  - symbol: †
+#    text: author note two
+links:
+  - name: Dataset
+    url: https://huggingface.co/
+    icon: simple-icons:huggingface
+  - name: Code
+    url: https://github.com/
+    icon: ri:github-line
+  - name: Pre-print
+    url: https://arxiv.org/abs/2411.13901
+    icon: academicons:arxiv
+
+# The color theme of the page. Defaults to "device" (the preference set in the user's brower or operating system). Setting this to "light" or "dark" will override the user's preference. This is useful if your figures only look good in one theme.
+theme: device
+
+favicon: favicon.png
+
+description: Website for the paper Dressing the Imagination, accepted at WACV 2026
+thumbnail: screenshot-light.png
+---
+
+import Video from "./components/Video.astro";
+import HighlightedSection from "./components/HighlightedSection.astro";
+import SmallCaps from "./components/SmallCaps.astro";
+import Figure from "./components/Figure.astro";
+import Picture from "./components/Picture.astro";
+import ModelViewer from "./components/ModelViewer.astro"
+import TwoColumns from "./components/TwoColumns.astro";
+import YouTubeVideo from "./components/YouTubeVideo.astro";
+import { Comparison } from "./components/Comparison.tsx";
+
+import outside from "./assets/outside.mp4";
+import dogsDiffc from "./assets/dogs-diffc.png"
+import dogsTrue from "./assets/dogs-true.png"
+
+<Video src={outside} />
+
+<HighlightedSection>
+
+## Key Contributions
+
+- We present **<SmallCaps>flora</SmallCaps>** (Fashion Language Outfit Representation for Apparel Generation), a comprehensive dataset with **4.3K curated fashion outfit–description pairs**. Descriptions use industry-specific fashion terminology, capturing fine-grained styling and design elements.
+
+  Impact of <SmallCaps>flora</SmallCaps> – Existing datasets such as DeepFashion, FashionGen and VITON-HD predominantly feature catalog-style imagery, lacking the abstraction andstylistic nuance essential for sketch-to-image generation.
+<SmallCaps>flora</SmallCaps> fills this gap by offering a sketch-centric benchmark with detailed, fashion-aware captions tailored to this
+domain. Models fine-tuned on <SmallCaps>flora</SmallCaps> generate more accurate and stylistically nuanced fashion images from text inputs. Aims to advance AI-driven fashion design and assist designers and end-users in bringing creative ideas to life.
+
+- NeRA Architecture – We propose **NeRA** _(Nonlinear low-rank Expressive Representation Adapter)_,  a novel adapter architecture built on LoRA. Replaces traditional MLP adapters (used in LoRA, LoKR, DoRA, LoHA) with learnable spline-based nonlinear transformations. NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality. Achieves better semantic modeling, faster convergence and stronger fidelity.
+
+  Empirical Validation & Open Source –
+Extensive experiments on FLORA and LAION-5B confirm NeRA’s superiority over existing adapter methods.
+Both the `FLORA` dataset and `NeRA` implementation code have been open-sourced.
+
+</HighlightedSection>
+
+## Figures
+
+<Figure>
+  <Picture slot="figure" src="../assets/trainexample.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption"></Fragment>
+</Figure>
+
+<Figure>
+  <Picture slot="figure" src="../assets/styles.pdf" alt="dataset styles" invertInDarkMode />
+  <Fragment slot="caption">Selected classes from each of the 9 categories in `FLORA` dataset, showcasing its diversity</Fragment>
+</Figure>
+
+<Figure>
+  <Picture slot="figure" src="../assets/additional_results_2.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption"></Fragment>
+</Figure>
+
+<Figure>
+  <Comparison slot="figure" client:idle >
+    <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two dogs running side-by-side in shallow water, lossily compressed using the DiffC algorithm" />
+    <Picture slot="itemTwo" src={dogsTrue} alt="Original photo of two dogs running side-by-side in shallow water" />
+  </Comparison>
+  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+</Figure>
+
+## Two columns
+
+Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+
+<TwoColumns>
+  <Figure slot="left">
+    /*<YouTubeVideo slot="figure" videoId="wjZofJX0v4M" />
+    <Fragment slot="caption">Take a look at this YouTube video.</Fragment>*/
+    <Picture slot="figure" src="../assets/FLUX_TSNE.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption"></Fragment>
+  </Figure>
+  <Figure slot="right">
+    <ModelViewer slot="figure" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
+    <Fragment slot="caption">Now look at this cube, rendered with the `<model-viewer>` web component.</Fragment>
+  </Figure>
+</TwoColumns>
+
+## LaTeX
+
+$$
+\int_a^b f(x) dx
+$$
+
+## Tables
+
+| Methods       | ZeroShot FID ↓ | ZeroShot CLIP ↑ | LoHA FID ↓ | LoHA CLIP ↑ | DoRA FID ↓ | DoRA CLIP ↑ | LoKR FID ↓ | LoKR CLIP ↑ | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
+|---------------|----------------|------------------|-------------|--------------|-------------|--------------|--------------|--------------|-------------|--------------|--------------|--------------|
+| FLUX          | 09.09 | 0.3112 | 09.34 | 0.3001 | 09.01 | 0.3131 | 08.33 | 0.3223 | 07.88 | 0.2987 | **06.05** | **0.3412** |
+| SD            | 19.25 | 0.0623 | 20.01 | 0.0630 | 19.02 | 0.0720 | 19.33 | 0.0751 | 17.32 | 0.0910 | **16.51** | **0.1112** |
+| SD-XL         | 16.37 | 0.1539 | 14.47 | 0.1667 | 15.89 | 0.1523 | 14.02 | 0.1782 | 15.32 | 0.1522 | **13.33** | **0.1897** |
+| SD-3          | 13.28 | 0.2118 | 13.62 | 0.2337 | 13.19 | 0.2279 | 13.01 | 0.2555 | 09.37 | 0.2119 | **08.07** | **0.2503** |
+| Pixart-Sigma  | 14.11 | 0.2666 | 13.88 | 0.2424 | 13.88 | 0.2707 | 12.92 | 0.2992 | 09.89 | 0.2542 | **08.28** | **0.2991** |
+
+**Table:** Results of SOTA diffusion models on **FLORA** dataset.
+
+## Tested on LAION-5B
+
+| Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
+|---------------|-------------|--------------|-------------|--------------|
+| FLUX          | 13.32 | 0.170 | **11.11** | **0.210** |
+| SD            | 22.19 | 0.060 | **21.11** | **0.080** |
+| SD-XL         | 21.01 | 0.070 | **20.93** | **0.101** |
+| SD-3          | 18.88 | 0.110 | **17.99** | **0.140** |
+| Pixart-Sigma  | 19.02 | 0.130 | **17.76** | **0.170** |
+
+## Tested on FLORA
+
+| Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
+|---------------|-------------|--------------|-------------|--------------|
+| FLUX          | 20.78 | 0.100 | **19.96** | **0.150** |
+| SD            | 33.17 | 0.002 | **32.07** | **0.010** |
+| SD-XL         | 27.88 | 0.010 | **27.12** | **0.020** |
+| SD-3          | 25.04 | 0.030 | **24.19** | **0.060** |
+| Pixart-Sigma  | 23.31 | 0.080 | **21.11** | **0.110** |
+
+## BibTeX
+
+Please cite our paper if you find it useful in your work.
+
+```bibtex
+@misc{deshmukh2025dressingimaginationdatasetaipowered,
+      title={Dressing the Imagination: A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel KAN Adapter for Enhanced Feature Adaptation}, 
+      author={Gayatri Deshmukh and Somsubhra De and Chirag Sehgal and Jishu Sen Gupta and Sparsh Mittal},
+      year={2025},
+      eprint={2411.13901},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2411.13901}, 
+}
+```
