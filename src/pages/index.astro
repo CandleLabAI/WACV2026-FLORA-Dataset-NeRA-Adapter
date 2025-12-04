@@ -7,7 +7,6 @@ import Notes from "../components/Notes.astro";
 import type { Author, Note, Link } from "../types/types";
 
 import Table from "../components/Table.astro";
-import GoToTop from '../components/GotoTop.astro';
 import TopBar from '../components/TopBar.astro';
 
 import { Icon } from "astro-icon/components";
@@ -109,6 +108,6 @@ const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
 
   </div>
 </footer>
-    <GoToTop />
+  <button id="goTop" class="go-to-top"><Icon name="chevron-up" class="w-5 h-5" /></button>
   </body>
 </html>
