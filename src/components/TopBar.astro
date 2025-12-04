@@ -1,0 +1,54 @@
+---
+--- 
+<header class="w-full bg-[#f4f7fb] shadow-sm py-3 px-5 flex justify-between items-center sticky top-0 z-50">
+  <div class="relative">
+    <button 
+      id="menuButton" 
+      class="bg-white text-slate-800 px-4 py-2 rounded-lg shadow hover:shadow-md transition-all duration-200 focus:outline-none flex items-center gap-2"
+      aria-expanded="false"
+    >
+      Menu
+      <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <div id="menuDropdown" class="absolute left-0 mt-2 w-40 bg-white rounded-lg shadow-lg opacity-0 invisible transition-all duration-200">
+      <a href="/" class="block px-4 py-2 text-slate-800 hover:bg-blue-100 rounded-t-lg">Home</a>
+    </div>
+  </div>
+
+  <div>
+    <button 
+      id="shareButton" 
+      class="bg-white text-slate-800 px-4 py-2 rounded-lg shadow hover:shadow-md transition-all duration-200 flex items-center gap-2"
+    >
+      Share
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v14" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script type="module" client:load>
+  const menuButton = document.getElementById('menuButton');
+  const menuDropdown = document.getElementById('menuDropdown');
+
+  menuButton.addEventListener('click', () => {
+    const isOpen = menuDropdown.classList.contains('opacity-100');
+    menuDropdown.classList.toggle('opacity-100', !isOpen);
+    menuDropdown.classList.toggle('visible', !isOpen);
+    menuDropdown.classList.toggle('invisible', isOpen);
+
+    menuButton.querySelector('svg').classList.toggle('rotate-180', !isOpen);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+      menuDropdown.classList.remove('opacity-100');
+      menuDropdown.classList.add('invisible');
+      menuButton.querySelector('svg').classList.remove('rotate-180');
+    }
+  });
+</script>

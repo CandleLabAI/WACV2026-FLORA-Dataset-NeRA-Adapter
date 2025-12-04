@@ -9,10 +9,10 @@ authors:
     url: https://linkedin.com/in/somsubhrad
     institution: IIT Madras
   - name: Chirag Sehgal
-    #url: https://linkedin.com/in/
+    url: https://in.linkedin.com/in/chiragsehgal224
     institution: DTU
   - name: Jishu Sen Gupta
-    #url: https://linkedin.com/in/
+    url: https://linkedin.com/in/
     institution: IIT BHU
   - name: Sparsh Mittal
     url: https://in.linkedin.com/in/sparsh-mittal-b77aa715
@@ -52,17 +52,25 @@ import prompt from "./assets/prompt.png"
 import sketch from "./assets/outfitsketch.png"
 import kanAdapter from "./assets/kanadapter.png";
 
+<Figure>
+  <Comparison slot="figure" client:idle >
+    <Picture slot="itemOne" src={prompt} alt="prompt details" />
+    <Picture slot="itemTwo" src={sketch} alt="generated sketch" />
+  </Comparison>
+  <Fragment slot="caption">_We turn fashion ideas into sketches and it works! Even the intricate details come to life._</Fragment>
+</Figure>
+
 <HighlightedSection>
 
-## Key Contributions in #AI4Fashion
+## ✅ Key Contributions to #AI4Fashion
 
-- We present **FLORA** (**F**ashion **L**anguage **O**utfit **R**epresentation for **A**pparel Generation), the 1st curated dataset of **fashion outfit sketches** paired with rich, industry-grade textual descriptions. FLORA aims to advance AI-driven fashion design and assist designers and end-users in bringing creative ideas to life.
+- We present **FLORA** _(**F**ashion **L**anguage **O**utfit **R**epresentation for **A**pparel Generation)_, the 1st curated dataset of **fashion outfit sketches** paired with rich, industry-grade textual descriptions. FLORA aims to advance AI-driven fashion design and assist designers and end-users in bringing creative ideas to life.
 
 - We propose **NeRA** _(**N**onlinear low-rank **E**xpressive **R**epresentation **A**dapter)_,  a novel parameter-efficient adapter based on Kolmogorov-Arnold Networks (KANs).
 
 </HighlightedSection>
 
-## FLORA Dataset
+<h2 class="text-center">FLORA Dataset</h2>
 
 <TwoColumns>
   <Figure slot="left">
@@ -72,16 +80,16 @@ import kanAdapter from "./assets/kanadapter.png";
   <Figure slot="right">
     <Fragment slot="figure">
       <ul class="my-0 space-y-2 text-lg">
-        <li>Offers a sketch-centric benchmark with **4,330** high-quality pairs of fashion outfit sketches and textual descriptions.</li>
-        <li>Each image is a clean, single-outfit sketch (no background clutter, no watermarks).</li>
+        <li>Offers a sketch-centric benchmark with **$4,330$** high-quality pairs of fashion outfit sketches and textual descriptions.</li>
+        <li>Each image is a clean, single-outfit sketch (no background clutter, no watermarks!).</li>
         Descriptions use fashion-industry terminology for:
 
           <ul class="my-2 ml-6 list-disc space-y-1 text-base [&_li]:mt-0">
-            <li>Garment type & silhouette</li>
-            <li>Style and construction details</li>
-            <li>Fabrics, textures, and patterns</li>
-            <li>Pose and figure proportions</li>
-            <li>Accessories and overall aesthetic</li>
+            <li>_Garment type & silhouette_</li>
+            <li>_Style and construction details_</li>
+            <li>_Fabrics, textures, and patterns_</li>
+            <li>_Pose and figure proportions_</li>
+            <li>_Accessories and overall aesthetic_</li>
           </ul>
       </ul>
     </Fragment>
@@ -97,7 +105,7 @@ import kanAdapter from "./assets/kanadapter.png";
   <Fragment slot="caption">Diversity of FLORA, selected classes from each of the 9 categories</Fragment>
 </Figure>
 
-## NeRA: Nonlinear Low-Rank Expressive Representation Adapter
+<h2 class="text-center">NeRA: Nonlinear Low-Rank Expressive Representation Adapter</h2>
 
 - Standard PEFT methods (LoRA, LoKR, DoRA, LoHA) use mainly linear or shallow MLP-based adapters, which are limited in capturing complex, nonlinear relationships in fine-grained domains like fashion.
 - NeRA is a new adapter module that:
@@ -116,15 +124,7 @@ import kanAdapter from "./assets/kanadapter.png";
 elements written in that color were correctly generated._</Fragment>
 </Figure>
 
-<Figure>
-  <Comparison slot="figure" client:idle >
-    <Picture slot="itemOne" src={prompt} alt="prompt details" />
-    <Picture slot="itemTwo" src={sketch} alt="generated sketch" />
-  </Comparison>
-  <Fragment slot="caption"></Fragment>
-</Figure>
-
-t-SNE visualization of the FLUX feature space
+### t-SNE visualization of the FLUX feature space
 
 <Figure>
   <Picture slot="figure" src="../assets/fluxtsne.pdf" alt="" invertInDarkMode />
@@ -132,36 +132,6 @@ t-SNE visualization of the FLUX feature space
 </Figure>
 
 ### NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality.
-
-| Methods       | ZeroShot FID ↓ | ZeroShot CLIP ↑ | LoHA FID ↓ | LoHA CLIP ↑ | DoRA FID ↓ | DoRA CLIP ↑ | LoKR FID ↓ | LoKR CLIP ↑ | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
-|---------------|----------------|------------------|-------------|--------------|-------------|--------------|--------------|--------------|-------------|--------------|--------------|--------------|
-| FLUX          | 09.09 | 0.3112 | 09.34 | 0.3001 | 09.01 | 0.3131 | 08.33 | 0.3223 | 07.88 | 0.2987 | **06.05** | **0.3412** |
-| SD            | 19.25 | 0.0623 | 20.01 | 0.0630 | 19.02 | 0.0720 | 19.33 | 0.0751 | 17.32 | 0.0910 | **16.51** | **0.1112** |
-| SD-XL         | 16.37 | 0.1539 | 14.47 | 0.1667 | 15.89 | 0.1523 | 14.02 | 0.1782 | 15.32 | 0.1522 | **13.33** | **0.1897** |
-| SD-3          | 13.28 | 0.2118 | 13.62 | 0.2337 | 13.19 | 0.2279 | 13.01 | 0.2555 | 09.37 | 0.2119 | **08.07** | **0.2503** |
-| Pixart-Sigma  | 14.11 | 0.2666 | 13.88 | 0.2424 | 13.88 | 0.2707 | 12.92 | 0.2992 | 09.89 | 0.2542 | **08.28** | **0.2991** |
-
-**Table:** Results of SOTA diffusion models on **FLORA** dataset.
-
-#### Tested on LAION-5B
-
-| Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
-|---------------|-------------|--------------|-------------|--------------|
-| FLUX          | 13.32 | 0.170 | **11.11** | **0.210** |
-| SD            | 22.19 | 0.060 | **21.11** | **0.080** |
-| SD-XL         | 21.01 | 0.070 | **20.93** | **0.101** |
-| SD-3          | 18.88 | 0.110 | **17.99** | **0.140** |
-| Pixart-Sigma  | 19.02 | 0.130 | **17.76** | **0.170** |
-
-#### Tested on FLORA
-
-| Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
-|---------------|-------------|--------------|-------------|--------------|
-| FLUX          | 20.78 | 0.100 | **19.96** | **0.150** |
-| SD            | 33.17 | 0.002 | **32.07** | **0.010** |
-| SD-XL         | 27.88 | 0.010 | **27.12** | **0.020** |
-| SD-3          | 25.04 | 0.030 | **24.19** | **0.060** |
-| Pixart-Sigma  | 23.31 | 0.080 | **21.11** | **0.110** |
 
 ## BibTeX
 
