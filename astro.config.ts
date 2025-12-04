@@ -20,7 +20,7 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   site: 'https://CandleLabAI.github.io',
-  base: '/WACV-2026-FLORA-AI-For-Fashion-Dataset',
+  base: '/WACV2026-FLORA-Dataset-NeRA-Adapter',
   integrations: [
     icon(),
     astroExpressiveCode({
