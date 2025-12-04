@@ -1,5 +1,7 @@
 ---
---- 
+
+---
+
 <header class="w-full bg-[#f4f7fb] shadow-sm py-3 px-5 flex justify-between items-center sticky top-0 z-50">
   <div class="relative">
     <button 
@@ -30,25 +32,3 @@
     </button>
   </div>
 </header>
-
-<script type="module" client:load>
-  const menuButton = document.getElementById('menuButton');
-  const menuDropdown = document.getElementById('menuDropdown');
-
-  menuButton.addEventListener('click', () => {
-    const isOpen = menuDropdown.classList.contains('opacity-100');
-    menuDropdown.classList.toggle('opacity-100', !isOpen);
-    menuDropdown.classList.toggle('visible', !isOpen);
-    menuDropdown.classList.toggle('invisible', isOpen);
-
-    menuButton.querySelector('svg').classList.toggle('rotate-180', !isOpen);
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-      menuDropdown.classList.remove('opacity-100');
-      menuDropdown.classList.add('invisible');
-      menuButton.querySelector('svg').classList.remove('rotate-180');
-    }
-  });
-</script>
