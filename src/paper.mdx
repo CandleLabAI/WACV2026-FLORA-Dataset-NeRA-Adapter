@@ -43,7 +43,6 @@ thumbnail: screenshot-light.png
 ---
 
 import HighlightedSection from "./components/HighlightedSection.astro";
-import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
 import TwoColumns from "./components/TwoColumns.astro";
@@ -103,10 +102,7 @@ import sketch from "./assets/outfitsketch.png"
    - Plugs into existing diffusion/transformer layers similarly to LoRA, with frozen backbone weights.
    - Provides more expressive, flexible feature transformations.
 
-<Figure>
-  <Picture slot="figure" src="../assets/KAN-adapter-drawio.png" alt="" invertInDarkMode />
-  <Fragment slot="caption">KAN Adapter</Fragment>
-</Figure>
+
 
 <Figure>
   <Picture slot="figure" src="../assets/peftvsnera.pdf" alt="" invertInDarkMode />
