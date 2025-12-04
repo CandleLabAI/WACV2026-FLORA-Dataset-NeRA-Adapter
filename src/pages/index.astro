@@ -7,7 +7,6 @@ import Notes from "../components/Notes.astro";
 import type { Author, Note, Link } from "../types/types";
 
 import Table from "../components/Table.astro";
-import TopBar from '../components/TopBar.astro';
 
 import { Icon } from "astro-icon/components";
 
@@ -64,12 +63,23 @@ const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
     <Font cssVariable="--font-noto-sans" preload />
 
     <title>{title}</title>
-  <script src="../scripts/global.js" type="module"></script>
+  <script src="/WACV2026-FLORA-Dataset-NeRA-Adapter/js/global.js" type="module"></script>
   </head>
-  <body
+  <!--<body
     class="overflow-x-hidden mx-auto max-w-[50rem] px-6 prose prose-lg prose-zinc dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-300 prose-a:no-underline prose-a:hover:underline prose-a:font-normal prose-code:bg-zinc-200 prose-code:dark:bg-zinc-800 prose-code:text-zinc-800 prose-code:dark:text-zinc-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:before:content-none prose-code:after:content-none mx-auto max-w-[50rem] bg-white px-6 pt-16 pb-6 font-(family-name:--font-noto-sans) dark:bg-zinc-900"
-  >
-  <TopBar />
+  >-->
+  
+  <body class="overflow-x-hidden mx-auto max-w-full bg-white dark:bg-zinc-900 pt-0 pb-0 font-(family-name:--font-noto-sans)
+              prose prose-lg prose-zinc dark:prose-invert 
+              prose-a:text-blue-500 prose-a:dark:text-blue-300 
+              prose-a:no-underline prose-a:hover:underline prose-a:font-normal 
+              prose-code:bg-zinc-200 prose-code:dark:bg-zinc-800 
+              prose-code:text-zinc-800 prose-code:dark:text-zinc-200 
+              prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded 
+              prose-code:font-medium prose-code:before:content-none 
+              prose-code:after:content-none">
+
+  <!--
     <div>
       <h1 class="text-center text-3xl font-bold text-[#3b3f8f]">{title}</h1>
       <div class="flex flex-col items-center gap-6">
@@ -78,29 +88,73 @@ const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
         {notes && <Notes notes={notes} />}
         {links && <Links links={links} />}
       </div>
+    </div>-->
+
+<header id="pageHeader" class="w-full sticky top-0 z-50 flex items-center justify-between py-2 px-4 transition-colors duration-300">
+  <div class="relative flex-shrink-0">
+    <button 
+      id="menuButton" 
+      class="px-3 py-1 rounded-lg text-slate-800 hover:bg-slate-100 transition-all duration-200 flex items-center gap-1"
+      aria-expanded="false"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+      Menu
+    </button>
+
+    <div id="menuDropdown" class="absolute left-0 mt-2 w-40 bg-white rounded-lg shadow-lg opacity-0 invisible transition-all duration-200">
+      <a href="/WACV2026-FLORA-Dataset-NeRA-Adapter" class="flex items-center gap-2 px-4 py-2 text-slate-800 hover:bg-blue-100 rounded-t-lg"><Icon name="ri:home-fill" /> Home</a>
+      <a href="mailto:sparsh.mittal@ece.iitr.ac.in" target="_blank" class="flex items-center gap-2 px-4 py-2 text-slate-800 hover:bg-blue-100 rounded-t-lg"><Icon name="ri:mail-fill" /> Contact</a>
     </div>
-    <main class="mt-6">
+  </div>
+
+<h1 class="text-center text-base font-medium text-black flex-1 mx-4 truncate">
+Welcome to our Project Page!
+  </h1>
+
+  <div class="flex-shrink-0">
+    <button 
+      id="shareButton" 
+      class="px-3 py-1 rounded-lg text-slate-800 hover:bg-slate-100 transition-all duration-200 flex items-center gap-1"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v14" />
+      </svg>
+      Share
+    </button>
+  </div>
+</header>
+
+<h1 class="mx-auto max-w-[50rem] px-6 text-center text-3xl font-bold text-[#3b3f8f]">{title}</h1>
+<div class="flex flex-col items-center gap-6 px-4 mt-4">
+  <Authors authors={authors} />
+  {conference && <div class="text-green-600">{conference}</div>}
+  {notes && <Notes notes={notes} />}
+  {links && <Links links={links} />}
+</div>
+
+
+    <main class="mt-6 mx-auto max-w-[50rem] px-6">
       <Content components={{ table: Table }} />
     </main>
-    <footer class="w-full border-t bg-[#e8eff7]">
-  <div class="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-3 px-4 py-4 text-sm text-slate-700 md:flex-row">
-        <p class="text-center md:text-left">
+<footer class="w-full bg-[#e8eff7] mt-12">
+  <div class="flex w-full flex-col items-center justify-between gap-3 px-4 py-4 text-sm text-slate-700 md:flex-row">
+  <p class="text-center md:text-left">
       Credits: Based on 
       <a
         href="https://github.com/RomanHauksson/academic-project-astro-template" 
         target="_blank"
         class="text-blue-700 underline hover:text-blue-900"
       >
-        Roman Hauksson's Astro template
-      </a>,
+        Roman Hauksson's Astro template</a>,
       licensed under
       <a 
         href="http://creativecommons.org/licenses/by-sa/4.0/" 
         target="_blank"
         class="text-blue-700 underline hover:text-blue-900"
       >
-        CC BY-SA 4.0
-      </a>.
+        CC BY-SA 4.0</a>.
     </p>
     <div class="text-center text-xs text-slate-600 md:text-right">
       Page Visits: <a href="https://www.freecounterstat.com" target="_blank" title="free website counter"><img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=ad8r987d64gblgbae5gxbwmjaryjwzs1" border="0" title="free website counter" alt="free website counter"></a>
