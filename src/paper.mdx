@@ -2,16 +2,20 @@
 title: Dressing the Imagination - A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel NeRA Adapter for Enhanced Feature Adaptation
 authors:
   - name: Gayatri Deshmukh
-    url: https://roman.technology
-    institution: Northwestern University
+    url: https://linkedin.com/in/gayatri-deshmukh-a57813193
+    institution: Independent Researcher
     #notes: ["*", †]
   - name: Somsubhra De
+    url: https://linkedin.com/in/somsubhrad
     institution: IIT Madras
   - name: Chirag Sehgal
+    #url: https://linkedin.com/in/
     institution: DTU
   - name: Jishu Sen Gupta
+    #url: https://linkedin.com/in/
     institution: IIT BHU
   - name: Sparsh Mittal
+    url: https://in.linkedin.com/in/sparsh-mittal-b77aa715
     institution: IIT Roorkee
 conference: Accepted at WACV 2026
 #notes:
@@ -34,93 +38,97 @@ theme: device
 
 favicon: favicon.png
 
-description: Website for the paper Dressing the Imagination, accepted at WACV 2026
+description: Website for the paper Dressing the Imagination, accepted at WACV 2026 #AI4Fashion
 thumbnail: screenshot-light.png
 ---
 
-import Video from "./components/Video.astro";
 import HighlightedSection from "./components/HighlightedSection.astro";
 import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
-import ModelViewer from "./components/ModelViewer.astro"
 import TwoColumns from "./components/TwoColumns.astro";
-import YouTubeVideo from "./components/YouTubeVideo.astro";
 import { Comparison } from "./components/Comparison.tsx";
 
-import outside from "./assets/outside.mp4";
-import dogsDiffc from "./assets/dogs-diffc.png"
-import dogsTrue from "./assets/dogs-true.png"
-
-<Video src={outside} />
+import prompt from "./assets/prompt.pdf"
+import sketch from "./assets/outfitsketch.jpg"
 
 <HighlightedSection>
 
-## Key Contributions
+## Key Contributions in #AI4Fashion
 
-- We present **<SmallCaps>flora</SmallCaps>** (Fashion Language Outfit Representation for Apparel Generation), a comprehensive dataset with **4.3K curated fashion outfit–description pairs**. Descriptions use industry-specific fashion terminology, capturing fine-grained styling and design elements.
+- We present **FLORA** (**F**ashion **L**anguage **O**utfit **R**epresentation for **A**pparel Generation), the 1st curated dataset of **fashion outfit sketches** paired with rich, industry-grade textual descriptions. FLORA aims to advance AI-driven fashion design and assist designers and end-users in bringing creative ideas to life.
 
-  Impact of <SmallCaps>flora</SmallCaps> – Existing datasets such as DeepFashion, FashionGen and VITON-HD predominantly feature catalog-style imagery, lacking the abstraction andstylistic nuance essential for sketch-to-image generation.
-<SmallCaps>flora</SmallCaps> fills this gap by offering a sketch-centric benchmark with detailed, fashion-aware captions tailored to this
-domain. Models fine-tuned on <SmallCaps>flora</SmallCaps> generate more accurate and stylistically nuanced fashion images from text inputs. Aims to advance AI-driven fashion design and assist designers and end-users in bringing creative ideas to life.
-
-- NeRA Architecture – We propose **NeRA** _(Nonlinear low-rank Expressive Representation Adapter)_,  a novel adapter architecture built on LoRA. Replaces traditional MLP adapters (used in LoRA, LoKR, DoRA, LoHA) with learnable spline-based nonlinear transformations. NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality. Achieves better semantic modeling, faster convergence and stronger fidelity.
-
-  Empirical Validation & Open Source –
-Extensive experiments on FLORA and LAION-5B confirm NeRA’s superiority over existing adapter methods.
-Both the `FLORA` dataset and `NeRA` implementation code have been open-sourced.
+- We propose **NeRA** _(**N**onlinear low-rank **E**xpressive **R**epresentation **A**dapter)_,  a novel parameter-efficient adapter based on Kolmogorov-Arnold Networks (KANs).
 
 </HighlightedSection>
 
-## Figures
+## FLORA Dataset
 
-<Figure>
+<TwoColumns>
+  <Figure slot="left">
   <Picture slot="figure" src="../assets/trainexample.pdf" alt="" invertInDarkMode />
-  <Fragment slot="caption"></Fragment>
+  <Fragment slot="caption">A figure and the generated textual description pair using GPT-4o</Fragment>
 </Figure>
+  <Figure slot="right">
+    <Fragment slot="figure">
+      <ul class="my-0 space-y-2 text-lg">
+        <li>Offers a sketch-centric benchmark with **4,330** high-quality pairs of fashion outfit sketches and textual descriptions.</li>
+        <li>Each image is a clean, single-outfit sketch (no background clutter, no watermarks).</li>
+        <li>Descriptions use fashion-industry terminology for:
+          <ul class="my-2 ml-6 list-disc space-y-1 text-base [&_li]:mt-0">
+            <li>Garment type & silhouette</li>
+            <li>Style and construction details</li>
+            <li>Fabrics, textures, and patterns</li>
+            <li>Pose and figure proportions</li>
+            <li>Accessories and overall aesthetic</li>
+          </ul>
+        </li>
+        <li>Models fine-tuned on FLORA generate more accurate and stylistically nuanced fashion images from text inputs.</li>
+      </ul>
+    </Fragment>
+  </Figure>
+</TwoColumns>
 
 <Figure>
   <Picture slot="figure" src="../assets/styles.pdf" alt="dataset styles" invertInDarkMode />
-  <Fragment slot="caption">Selected classes from each of the 9 categories in `FLORA` dataset, showcasing its diversity</Fragment>
+  <Fragment slot="caption">Diversity of FLORA, selected classes from each of the 9 categories</Fragment>
+</Figure>
+
+## NeRA: Nonlinear Low-Rank Expressive Representation Adapter
+
+- Standard PEFT methods (LoRA, LoKR, DoRA, LoHA) use mainly linear or shallow MLP-based adapters, which are limited in capturing complex, nonlinear relationships in fine-grained domains like fashion.
+- NeRA is a new adapter module that:
+   - Uses KAN-style learnable spline or RBF basis functions instead of fixed activations.
+   - Plugs into existing diffusion/transformer layers similarly to LoRA, with frozen backbone weights.
+   - Provides more expressive, flexible feature transformations.
+
+<Figure>
+  <Picture slot="figure" src="../assets/KAN-adapter-drawio.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption">KAN Adapter</Fragment>
 </Figure>
 
 <Figure>
-  <Picture slot="figure" src="../assets/additional_results_2.pdf" alt="" invertInDarkMode />
-  <Fragment slot="caption"></Fragment>
+  <Picture slot="figure" src="../assets/peft_vs_nera_main_2.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption">Qualitative comparison of zero-shot, MLP-based adapters and the proposed NeRA. _Colored arrows mark whether the prompt
+elements written in that color were correctly generated._</Fragment>
 </Figure>
 
 <Figure>
   <Comparison slot="figure" client:idle >
-    <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two dogs running side-by-side in shallow water, lossily compressed using the DiffC algorithm" />
-    <Picture slot="itemTwo" src={dogsTrue} alt="Original photo of two dogs running side-by-side in shallow water" />
+    <Picture slot="itemOne" src={prompt} alt="prompt details" />
+    <Picture slot="itemTwo" src={sketch} alt="generated sketch" />
   </Comparison>
-  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
+  <Fragment slot="caption"></Fragment>
 </Figure>
 
-## Two columns
+t-SNE visualization of the FLUX feature space
 
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+<Figure>
+  <Picture slot="figure" src="../assets/FLUX_TSNE.pdf" alt="" invertInDarkMode />
+  <Fragment slot="caption">NeRA yields clearer, better-separated clusters than other adapters, indicating stronger semantic organization and disentanglement of fashion concepts.</Fragment>
+</Figure>
 
-<TwoColumns>
-  <Figure slot="left">
-    /*<YouTubeVideo slot="figure" videoId="wjZofJX0v4M" />
-    <Fragment slot="caption">Take a look at this YouTube video.</Fragment>*/
-    <Picture slot="figure" src="../assets/FLUX_TSNE.pdf" alt="" invertInDarkMode />
-  <Fragment slot="caption"></Fragment>
-  </Figure>
-  <Figure slot="right">
-    <ModelViewer slot="figure" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
-    <Fragment slot="caption">Now look at this cube, rendered with the `<model-viewer>` web component.</Fragment>
-  </Figure>
-</TwoColumns>
-
-## LaTeX
-
-$$
-\int_a^b f(x) dx
-$$
-
-## Tables
+### NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality.
 
 | Methods       | ZeroShot FID ↓ | ZeroShot CLIP ↑ | LoHA FID ↓ | LoHA CLIP ↑ | DoRA FID ↓ | DoRA CLIP ↑ | LoKR FID ↓ | LoKR CLIP ↑ | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
 |---------------|----------------|------------------|-------------|--------------|-------------|--------------|--------------|--------------|-------------|--------------|--------------|--------------|
@@ -132,7 +140,7 @@ $$
 
 **Table:** Results of SOTA diffusion models on **FLORA** dataset.
 
-## Tested on LAION-5B
+#### Tested on LAION-5B
 
 | Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
 |---------------|-------------|--------------|-------------|--------------|
@@ -142,7 +150,7 @@ $$
 | SD-3          | 18.88 | 0.110 | **17.99** | **0.140** |
 | Pixart-Sigma  | 19.02 | 0.130 | **17.76** | **0.170** |
 
-## Tested on FLORA
+#### Tested on FLORA
 
 | Methods       | LoRA FID ↓ | LoRA CLIP ↑ | NeRA FID ↓ | NeRA CLIP ↑ |
 |---------------|-------------|--------------|-------------|--------------|
@@ -158,12 +166,20 @@ Please cite our paper if you find it useful in your work.
 
 ```bibtex
 @misc{deshmukh2025dressingimaginationdatasetaipowered,
-      title={Dressing the Imagination: A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel KAN Adapter for Enhanced Feature Adaptation}, 
+      title={Dressing the Imagination: A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel NeRA Adapter for Enhanced Feature Adaptation}, 
       author={Gayatri Deshmukh and Somsubhra De and Chirag Sehgal and Jishu Sen Gupta and Sparsh Mittal},
       year={2025},
       eprint={2411.13901},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2411.13901}, 
+}
+
+@inproceedings{Deshmukh_2026_WACV,
+  author    = {Deshmukh, Gayatri and De, Somsubhra and Sehgal, Chirag and Gupta, Jishu Sen and Mittal, Sparsh},   
+  title     = {Dressing the Imagination: A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel NeRA Adapter for Enhanced Feature Adaptation},
+  booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  month     = {March},
+  year      = {2026},
 }
 ```
