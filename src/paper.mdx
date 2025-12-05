@@ -2,17 +2,17 @@
 title: Dressing the Imagination - A Dataset for AI-Powered Translation of Text into Fashion Outfits and A Novel NeRA Adapter for Enhanced Feature Adaptation
 authors:
   - name: Gayatri Deshmukh
-    url: https://linkedin.com/in/gayatri-deshmukh-a57813193
+    url: https://www.linkedin.com/in/gayatri-deshmukh-a57813193
     institution: Independent Researcher
     #notes: ["*", †]
   - name: Somsubhra De
-    url: https://linkedin.com/in/somsubhrad
+    url: https://in.linkedin.com/in/somsubhrad
     institution: IIT Madras
   - name: Chirag Sehgal
     url: https://in.linkedin.com/in/chiragsehgal224
     institution: DTU
   - name: Jishu Sen Gupta
-    url: https://linkedin.com/in/
+    url: https://in.linkedin.com/in/jishu-sengupta-949444258
     institution: IIT BHU
   - name: Sparsh Mittal
     url: https://in.linkedin.com/in/sparsh-mittal-b77aa715
@@ -38,8 +38,8 @@ theme: device
 
 favicon: favicon.png
 
-description: Website for the paper Dressing the Imagination, accepted at WACV 2026 #AI4Fashion
-thumbnail: screenshot-light.png
+description: Website for the paper Dressing the Imagination, accepted at WACV 2026 \#AI4Fashion
+thumbnail: /WACV2026-FLORA-Dataset-NeRA-Adapter/thumbnail.jpg
 ---
 
 import HighlightedSection from "./components/HighlightedSection.astro";
@@ -102,7 +102,7 @@ import kanAdapter from "./assets/kanadapter.png";
 
 <Figure>
   <Picture slot="figure" src="../assets/styles.pdf" alt="dataset styles" invertInDarkMode />
-  <Fragment slot="caption">Diversity of FLORA, selected classes from each of the 9 categories</Fragment>
+  <Fragment slot="caption">Diversity of `FLORA`, selected classes from each of the 9 categories</Fragment>
 </Figure>
 
 <h2 class="text-center">NeRA: Nonlinear Low-Rank Expressive Representation Adapter</h2>
@@ -115,8 +115,10 @@ import kanAdapter from "./assets/kanadapter.png";
 
 <Figure>
   <Picture slot="figure" src={kanAdapter} alt="" unoptimized invertInDarkMode />
-  <Fragment slot="caption">KAN Adapter</Fragment>
+  <Fragment slot="caption">`NeRA` Adapter</Fragment>
 </Figure>
+
+<h2 class="text-center">Qualitative Results</h2>
 
 <Figure>
   <Picture slot="figure" src="../assets/peftvsnera.pdf" alt="" invertInDarkMode />
@@ -124,14 +126,16 @@ import kanAdapter from "./assets/kanadapter.png";
 elements written in that color were correctly generated._</Fragment>
 </Figure>
 
-### t-SNE visualization of the FLUX feature space
+<h3 class="text-center">t-SNE visualization of the FLUX feature space</h3>
 
 <Figure>
   <Picture slot="figure" src="../assets/fluxtsne.pdf" alt="" invertInDarkMode />
   <Fragment slot="caption">NeRA yields clearer, better-separated clusters than other adapters, indicating stronger semantic organization and disentanglement of fashion concepts.</Fragment>
 </Figure>
 
-### NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality.
+<div class="border-l-4 border-green-500 bg-green-50 dark:bg-green-900/20 p-4 rounded">
+NeRA shows higher CLIPSIM and lower FID scores, indicating better text-image alignment and visual quality.
+</div>
 
 ## BibTeX
 
