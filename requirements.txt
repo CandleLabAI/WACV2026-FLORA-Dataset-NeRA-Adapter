@@ -1,0 +1,12 @@
+torch==2.2.2+cu121
+torchvision==0.17.2+cu121
+torchaudio==2.2.2+cu121
+accelerate>=0.28.0
+diffusers>=0.28.2
+transformers>=4.39.0
+pandas>=2.2.0
+Pillow>=10.2.0
+pyyaml>=6.0.1
+safetensors>=0.4.2
+sentencepiece>=0.1.99
+tqdm>=4.66.2

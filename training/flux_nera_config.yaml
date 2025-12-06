@@ -1,0 +1,26 @@
+pretrained_model_name_or_path: black-forest-labs/FLUX.1-dev
+cache_dir: /path/to/flux_model_cache
+
+data:
+  csv_path: /path/to/final_data3.csv
+  image_root: /path/to/Final_Images_Data2/
+
+training:
+  batch_size: 1
+  epochs: 20
+  lr: 1e-5
+  warmup_steps: 100
+  grad_accum: 8
+  mixed_precision: fp16
+  log_with: wandb
+  seed: 42
+  num_workers: 4
+
+nera:
+  r: 64
+  alpha: 64.0
+  dropout: 0.0
+  target_modules: ["to_k", "to_out.0", "to_v", "to_q"]
+  adapter_dir: /path/to/output_adapter_dir
+
+save_every: 5
