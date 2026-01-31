@@ -52,6 +52,11 @@ import prompt from "./assets/prompt.png"
 import sketch from "./assets/outfitsketch.png"
 import kanAdapter from "./assets/kanadapter.png";
 
+import qualimg1 from "./assets/ArticleDig2.png";
+import qualimg2 from "./assets/new_img_1.jpeg";
+import qualimg3 from "./assets/new_img_2.jpeg";
+import qualimg4 from "./assets/new_img_3.jpeg";
+
 <Figure>
   <Comparison slot="figure" client:idle >
     <Picture slot="itemOne" src={prompt} alt="prompt details" />
@@ -124,6 +129,15 @@ import kanAdapter from "./assets/kanadapter.png";
   <Picture slot="figure" src="../assets/peftvsnera.pdf" alt="" invertInDarkMode />
   <Fragment slot="caption">Qualitative comparison of zero-shot, MLP-based adapters and the proposed NeRA. _Colored arrows mark whether the prompt
 elements written in that color were correctly generated._</Fragment>
+</Figure>
+
+<Figure>
+<div slot="figure" class="grid grid-cols-2 gap-2">
+  <Picture slot="figure" src={qualimg1} alt="" unoptimized invertInDarkMode />
+  <Picture slot="figure" src={qualimg2} alt="" unoptimized invertInDarkMode />
+  <Picture slot="figure" src={qualimg3} alt="" unoptimized invertInDarkMode />
+  <Picture slot="figure" src={qualimg4} alt="" unoptimized invertInDarkMode />
+  </div>
 </Figure>
 
 <h3 class="text-center">t-SNE visualization of the FLUX feature space</h3>
