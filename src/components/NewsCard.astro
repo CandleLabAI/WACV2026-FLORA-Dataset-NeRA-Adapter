@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  outlet: string;
+  date: string;
+  link: string;
+  image?: string;
+}
+
+const { title, outlet, date, link, image } = Astro.props;
+---
+
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-zinc-800 hover:shadow-lg transition-all duration-300"
+>
+  {image && (
+    <img
+      src={image}
+      alt={title}
+      class="h-44 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+  )}
+
+  <div class="p-4 space-y-2">
+    <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100">
+      {title}
+    </h3>
+
+    <p class="flex items-center gap-1 text-sm text-slate-600 dark:text-slate-400">
+      {outlet} <Icon name="ri:calendar-fill" /> {date}
+    </p>
+
+    <div class="flex items-center gap-1 text-sm text-blue-600 dark:text-blue-400">
+      <Icon name="ri:external-link-line" />
+      Read coverage
+    </div>
+  </div>
+</a>
